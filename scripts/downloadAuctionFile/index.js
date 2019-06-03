@@ -1,4 +1,4 @@
-const fs = require('fs');
+  const fs = require('fs');
 const axios = require('axios');
 //entrypoint
 exports.getAndCleanFile = (req, res) => {
