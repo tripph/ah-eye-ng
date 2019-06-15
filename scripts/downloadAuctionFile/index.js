@@ -24,7 +24,7 @@ async function importIntoBQ() {
   };
   const [job] = await bq
     .dataset('auctions')
-    .table('auctionsnow')
+    .table('auctionsnow_20190607')
     .load('/tmp/auctions_newly_fixed.json', metadata);
   console.log(`Job ${job.id} completed.`);
 

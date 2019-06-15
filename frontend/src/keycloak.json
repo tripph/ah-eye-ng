@@ -1,0 +1,10 @@
+{
+  "realm": "testrealm",
+  "auth-server-url": "https://auth-dev.mymfg.app/auth",
+  "ssl-required": "external",
+  "resource": "aheye",
+  "credentials": {
+    "secret": "57209180-40e0-4464-a36c-680e9f7917eb"
+  },
+  "confidential-port": 0
+}

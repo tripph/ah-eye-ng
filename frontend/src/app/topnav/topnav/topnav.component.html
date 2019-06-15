@@ -1,20 +1,24 @@
 <mat-toolbar color="primary">
   <span>AH-Eye</span>
   <form [formGroup]="form">
-    <mat-form-field>
-      <mat-select placeholder="Select a Region"  formControlName="region">
-        <mat-option *ngFor="let region of regions" [value]="region">
-          {{region}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+    <!--    <mat-form-field>-->
+    <!--      <mat-select placeholder="Select a Region"  formControlName="region">-->
+    <!--        <mat-option *ngFor="let region of regions" [value]="region">-->
+    <!--          {{region}}-->
+    <!--        </mat-option>-->
+    <!--      </mat-select>-->
+    <!--    </mat-form-field>-->
     <mat-form-field>
       <input placeholder="Select a Realm" matInput [matAutocomplete]="realmAutocomplete" formControlName="realm"/>
-      <mat-autocomplete autoActiveFirstOption #realmAutocomplete="matAutocomplete">
-        <mat-option *ngFor="let realm of realms" [value]="realm">
-          {{realm}}
+      <mat-autocomplete #realmAutocomplete="matAutocomplete">
+        <mat-option *ngFor="let realm of filteredRealms | async" [value]="realm.name">
+          {{realm.name}}
         </mat-option>
       </mat-autocomplete>
+      <button mat-button *ngIf="realmControl.value != ''" matSuffix mat-icon-button aria-label="Clear"
+              (click)="realmControl.setValue('')">
+        <mat-icon>close</mat-icon>
+      </button>
     </mat-form-field>
   </form>
 

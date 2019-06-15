@@ -6,8 +6,8 @@ async function main() {
   const baseURL = 'https://us.api.blizzard.com/wow/item/';
   getToken().then(async token => {
     console.log(`token: ${token}`);
-    for (let i = 25; i < 200000; i++) {
-      await sleep(250);
+    for (let i = 0; i < 250000; i++) {
+      await sleep(300);
       axios.get(baseURL + i + '?locale=en_US&access_token=' + token).then(resp => {
         // console.log(resp);
         if (resp.status === 200) {
@@ -20,7 +20,14 @@ async function main() {
         if (resp.status === 404) {
           console.log(`item ${i} not found`)
         }
-      }).catch((err) => {});
+      }).catch((err) => {
+        if(err.response.status == 404) {
+          // console.log('item not found');
+        }
+        if(err.response.status == 500) {
+          console.log('over quota!!');
+        }
+      });
     }
   });
 }
